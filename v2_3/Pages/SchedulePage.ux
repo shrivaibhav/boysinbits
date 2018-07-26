@@ -1,0 +1,160 @@
+<Alive.Page ux:Class="Alive.ExampleApp.SchedulePage" xmlns:example="Alive.ExampleApp">
+	
+	<Router ux:Dependency="router" />
+	<Font File="../fonts/Oswald-Medium.ttf" ux:Global="oswald" />
+	<JavaScript>
+	var Observable = require('FuseJS/Observable');
+
+	exports.pushDetails = function() {
+		router.push("details");
+	}
+	
+
+	exports.logoutClicked = function(){
+		router.push("SignIn");
+	}
+	
+
+	////////////////////////////////
+	var installedAppliances=Observable();
+	fetch("https://api.mlab.com/api/1/databases/hardware/collections/V2Devices?apiKey=Qd1BYa9Hpu9HUixPA76rEmmHyFuVqvop")
+		.then(function(result){
+			result.json().then(function(data){
+
+				var k=data.length;
+				console.log(k);
+				for(var i=0; i<=k; i++){
+					if(data[i].clientID=="987766"){
+						console.log(data[i].deviceType);
+						var item=data[i];
+						installedAppliances.add(item);
+				
+					}
+					
+				}
+
+				
+			})
+		})
+	//////////////////////////////////////
+	var deviceType=Observable();
+	function deviceClicked(e){
+		deviceType.value=e.data.deviceType;
+		var id=deviceType.value
+		//console.log(id);
+		
+		router.goto("Device", {selectedDevice:id})
+
+	}
+	module.exports={
+		installedAppliances:installedAppliances,
+		deviceClicked:deviceClicked
+	}
+	//////////////////////////////////
+
+
+
+	</JavaScript>
+	<Alive.Drawer ux:Name="drawer" Alignment="Default">
+		<StackPanel ux:Binding="Menu">
+				<example:DrawerItem Text="My Home" Clicked="{goToSchedule}" />
+				<example:DrawerItem Text="Settings" Clicked="{goToSettings}" />
+				<example:DrawerItem Text="Logout" Clicked="{goToLogout}" />
+		</StackPanel>
+		<Circle ux:Class="Eliot.Bubble" Width="48" Height="48" Color="#00000000" />
+		<Rectangle ux:Class="Eliot.GridElement" Height="105" Width="105" Margin="10,5,10,5" CornerRadius="15">
+			<LinearGradient>
+				<GradientStop Offset="0" Color="Alive.Gradient3.StartColor" />
+				<GradientStop Offset="1" Color="Alive.Gradient3.EndColor" />
+			</LinearGradient>
+		</Rectangle>
+		<Alive.CarouselPage ux:Class="Eliot.CorousalPage">
+			<Alive.ThemedCard>
+				<!--Alive.DarkTheme /-->
+				<StackPanel ItemSpacing="30" Width="200" Alignment="CenterLeft">
+					<StackPanel Orientation="Horizontal" Y="20">
+						<Rectangle Height="60" Width="60" CornerRadius="25" Alignment="TopLeft" Margin="0, 0, 0, 0" Padding="0, 0, 0, 0" X="135" Y="-40">
+							<ImageFill File="../Assets/bedroom_2.png" StretchMode="Fill" />
+						</Rectangle>
+						<Alive.Body Font="oswald" FontSize="25" TextAlignment="Center" TextWrapping="Wrap" Alignment="CenterRight" Margin="20, 0, 0, 0" Y="20" X="35">
+							BEDROOM
+						</Alive.Body>
+					</StackPanel>
+					<!--Alive.Bubbles Margin="0, 0, 0, 0" Y="5" ItemSpacing="-20">
+						<Eliot.Bubble Height="25">
+							<LinearGradient>
+								<GradientStop Offset="0" Color="Alive.Gradient3.StartColor" />
+								<GradientStop Offset="1" Color="Alive.Gradient3.EndColor" />
+							</LinearGradient>
+						</Eliot.Bubble>
+						<Alive.Bubble Height="20">
+							<LinearGradient>
+								<GradientStop Offset="0" Color="Alive.Gradient3.StartColor" />
+								<GradientStop Offset="1" Color="Alive.Gradient3.EndColor" />
+							</LinearGradient>
+						</Alive.Bubble>
+					</Alive.Bubbles-->
+					<!--StackPanel Orientation="Horizontal" Y="-15">
+						<Eliot.Bubble Height="25" Margin="5,0,0,0" Alignment="BottomLeft">
+							<LinearGradient>
+								<GradientStop Offset="0" Color="#02DEB6" />
+								<GradientStop Offset="1" Color="#49DB45" />
+							</LinearGradient>
+						</Eliot.Bubble>
+						<Eliot.Bubble Height="35" Alignment="BottomRight" Margin="230, 0, 0, 0" X="-10" Y="-8">
+							<LinearGradient>
+								<GradientStop Offset="0" Color="#FFD12A" />
+								<GradientStop Offset="1" Color="#FFD12A" />
+							</LinearGradient>
+						</Eliot.Bubble>
+					</StackPanel-->
+				</StackPanel>
+				<LinearGradient>
+					<GradientStop Offset="0" Color="Alive.Gradient3.StartColor" />
+					<GradientStop Offset="1" Color="Alive.Gradient3.EndColor" />
+				</LinearGradient>
+			</Alive.ThemedCard>
+		</Alive.CarouselPage>
+		<Alive.MediaScroller TopBarColor="Alive.Dark.PrimaryBackgroundColor">
+			<StackPanel ux:Template="TopBar">
+				<StatusBarBackground />
+				<StackPanel Orientation="Horizontal">
+					<!--Alive.Title FontSize="25" Alignment="CenterLeft" Margin="20, 0, 20, 0" Padding="0, 0, 3, 0">+</Alive.Title-->
+					<Alive.Title Font="oswald" Color="Black" FontSize="25" Alignment="VerticalCenter" TextAlignment="Center" Margin="80, 0, 0, 0">MY HOME</Alive.Title>
+					<Rectangle Height="44" Width="40" CornerRadius="5" Alignment="Right" Margin="70, 10, 10, 0" X="38">
+						<Alive.ImageFill File="../Assets/profile.png" />
+					</Rectangle>
+				</StackPanel>
+			</StackPanel>
+			<!-- 	Change color here		-->
+			<StackPanel ux:Binding="Media" Color="Black">
+				<Alive.DarkTheme />
+			</StackPanel>
+			<Panel ux:Template="MediaOverlay" Margin="0,80,0,0" Color="Black">
+				<Alive.Carousel>
+					<Alive.DarkTheme />
+					<Eliot.CorousalPage />
+					<Eliot.CorousalPage />
+				</Alive.Carousel>
+			</Panel>
+			<!-- 	Change color here		-->
+			<!-- Color="Alive.Dark.PrimaryBackgroundColor" -->
+			<Grid RowCount="3" ColumnCount="3" Color="Black">
+				<Each Items="{installedAppliances}">
+					<DockPanel BoxSizing="FillAspect" Aspect="1">
+									
+						
+						<Rectangle Color="{backCol}" CornerRadius="25" Height="110" Width="110">
+				
+							<Image Url="{deviceIcon}" Layer="Background" StretchMode="Fill" Margin="10,10,10,10" Clicked="{deviceClicked}" />
+							<Text Value="{deviceType}" FontSize="12" Alignment="BottomCenter" TextColor="White" Margin="0,0,0,0" Y="-4" />
+
+							<!--Stroke Width="1" Color="#eaeaea" /-->
+							
+						</Rectangle>
+						</DockPanel>
+				</Each>
+			</Grid>
+		</Alive.MediaScroller>
+	</Alive.Drawer>
+</Alive.Page>

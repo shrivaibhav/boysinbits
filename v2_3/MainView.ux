@@ -1,0 +1,57 @@
+<App xmlns:example="Alive.ExampleApp" >
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		
+		exports.darkThemeEnabled = Observable(false);
+		
+		exports.closeMenu = function () { drawer.close(); };
+		exports.toggleMenuButton = function () { drawer.toggleMenu(); };
+
+		function createGoToHandler(route) {
+			return function() {
+				router.goto(route);
+				drawer.close();
+			}
+		}
+		function  logout(route){
+			return function() {
+				router.goto(route);
+				drawer.close();
+			}
+		}
+		//exports.goToSelect = createGoToHandler("select");
+		exports.goToLogout = logout("SignIn");
+		exports.goToSchedule = createGoToHandler("schedule");
+		exports.goToSettings = createGoToHandler("settings");
+		//exports.goToStats = createGoToHandler("stats");
+	</JavaScript>
+
+	<Panel ux:Class="Alive.ExampleApp.DrawerItem" HitTestMode="LocalBounds">
+		<string ux:Property="Text" />
+		<Alive.BodyBold Value="{ReadProperty Text}" Margin="50,20,0,20" />
+	</Panel>
+
+	<Alive.FallbackTheme />
+
+	<Panel>
+		
+		<WhileTrue Value="{Read darkThemeEnabled}">
+			<Alive.DarkTheme />
+		</WhileTrue>
+		<WhileFalse Value="{Read darkThemeEnabled}">
+			<Alive.LightTheme />
+		</WhileFalse>
+
+		<Router ux:Name="router" />
+		
+
+			<Navigator DefaultPath="SignIn">
+				<SignIn ux:Template="SignIn" router="router"/>
+				<Device ux:Template="Device" router="router"/>
+				<example:SchedulePage ux:Template="schedule" router="router" />
+				<example:SettingsPage ux:Template="settings" />
+			</Navigator>
+		
+		
+	</Panel>
+</App>

@@ -1,0 +1,26 @@
+<Alive.Page ux:Class="Alive.ExampleApp.DetailsPage" xmlns:example="Alive.ExampleApp">
+	<Router ux:Dependency="router" />
+	<JavaScript>
+		exports.goBack = function() {
+			router.goBack();
+		}
+	</JavaScript>
+	
+	<Alive.MediaScroller TopBarColor="withOpacity({Resource Alive.AccentColor}, .7)">
+		
+		<Image ux:Binding="Media" File="../Assets/1.jpg" Layer="Background" StretchMode="UniformToFill" Height="3000" /> 
+	
+		<StackPanel ux:Template="TopBar">
+			<StatusBarBackground />
+			<DockPanel Margin="20">
+				<Alive.BackButton Dock="Left" Clicked="{goBack}" Y="10" X="5" />
+				
+			</DockPanel>
+		</StackPanel>
+				
+		
+
+		
+	</Alive.MediaScroller>
+	
+</Alive.Page>

@@ -1,0 +1,111 @@
+<Page ux:Class="SignIn"> 
+   <Router ux:Dependency="router" />
+   <JavaScript>
+
+                        
+var Observable=require ("FuseJS/Observable")
+var Email = Observable("");
+var Password = Observable("");
+var client_id = Observable("");
+    function LoginClicked(args){
+        /*console.log("Username is "+Username.value);
+        console.log("password is "+Password.value);*/
+        fetch("https://api.mlab.com/api/1/databases/student/collections/Users?apiKey=mM4ypsFccC7f-MHauInmV5qt4icpdSOU")
+        .then(function(result){
+            result.json().then(function(data){ 
+            var i=0;
+            var control=0;
+            //var Base64Password=Base64.encodeAscii(Password.value);
+            
+            for(i ;i<data.length;i++)
+                {
+                    if((data[i].email)==(Email.value))
+                            {
+                    
+                            if(data[i].password==(Password.value))
+                                {
+                                    control=1;
+                                    client_id=data[i].client_id;
+                                    }  
+                        } 
+                    }    
+            console.log(control);
+            //console.log(client_id);
+            if(control==0)
+                console.log("Authorization failed!");
+            else
+                { 
+                    
+                    console.log("Authorization Granted!");
+                    
+                    router.goto("schedule",{clientID: client_id});
+
+                    
+                }
+    
+        
+        });
+    });    
+    }
+
+
+    function ClearClickedLogin(){
+
+
+        Email.value="";
+        Password.value="";
+
+
+
+    }
+
+
+    module.exports={
+    client_id: client_id,
+    Email: Email,
+        Password: Password,
+        LoginClicked : LoginClicked,
+        ClearClickedLogin: ClearClickedLogin
+    }
+   </JavaScript>
+
+    <Panel>
+        <Image File="Assets/go_green_bulb.jpg" Layer="Background" StretchMode="Fill"/>
+
+    <ScrollView>
+    
+      
+    <StackPanel Alignment="Bottom" Margin="45">
+
+            <!-- Image File="Assets/About.png"  / -->
+            <Grid ux:Name="loginArea" Row="1" Padding="0,20" RowCount="2" Columns="auto,1*" Height="180" MaxWidth="400">
+				<Image     Row="0" Column="0" File="Assets/user.png" Width="30" Height="30" Margin="10,0,30,0" Alignment="Left"/>
+				<TextInput Row="0" Column="1" PlaceholderText="Email" PlaceholderColor="Black" TextColor="#000" CaretColor="#fff" Value="{Email}"/>
+				<Rectangle Row="0" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="Black"/>
+                
+
+				<Image     Row="1" Column="0" File="Assets/lock.png" Width="30" Height="30" Margin="10,0,30,0" Alignment="Left"/>
+				<TextInput Row="1" Column="1" PlaceholderText="Password" PlaceholderColor="Black" TextColor="#000" CaretColor="#fff" IsPassword="true" Value="{Password}"/>
+				<Rectangle Row="1" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="Black"/>
+
+                
+
+            </Grid>
+               
+                <Button Margin="70,15,70,10" Color="#8E4208" Clicked="{LoginClicked}">
+                    <Text Value="Login" Color="#fff" Alignment="Center" Margin="30,15"   />
+                </Button>
+                <Button>
+                 <Text Value= "Clear" Color="#fff" Clicked="{ClearClickedLogin}" Alignment="Center"  Margin="0,0,0,15"/>
+                    <!--Text Value="Not a member? Sign Up" Color="#fff" Alignment="Center" Margin="10,45,10,0"  Clicked="{SignupClick}">
+                    <WhileHovering>
+                        <Scale Factor="1.25" Duration="0.2"/>
+                        
+                    </WhileHovering> 
+                    </Text-->
+                </Button>
+        
+    </StackPanel>
+    </ScrollView>
+    </Panel>
+    </Page>

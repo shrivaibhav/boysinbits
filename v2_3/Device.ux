@@ -1,0 +1,152 @@
+<Page ux:Class="Device">
+<Router ux:Dependency="router" />
+
+<JavaScript>
+    var Observable=require("FuseJS/Observable");
+    var finalUnit=Observable("");
+
+    var relayNumber;
+    var moxNumber;
+    var selectedDevice=this.Parameter.map(function(param){
+        //console.log(param.selectedDevice);
+
+        if(param.selectedDevice=="AC"){
+            moxNumber="M0";
+            relayNumber="0";
+        }
+        else if(param.selectedDevice=="Light"){
+            moxNumber="M1";
+            relayNumber="1"
+        }
+
+        else{
+            moxNumber="M";
+            relayNumber="null"
+        }
+        
+        console.log(moxNumber)
+        console.log(relayNumber);
+        return param.selectedDevice;
+     })
+
+     function getPulseCount(){
+        if(moxNumber=="M0"){
+        fetch("https://api.mlab.com/api/1/databases/hardware/collections/moxpdata?apiKey=Qd1BYa9Hpu9HUixPA76rEmmHyFuVqvop")
+       .then(function(result){
+           result.json().then(function(data){
+
+               var k=data.length;
+               var unitArray=[0];
+               for(var i=0; i<k; i++){
+                 if(data[i].M0!=null)
+                    {
+                        
+                        unitArray.push(data[i].M0)
+                        //console.log(unitArray);
+                        finalUnit.value =Math.max.apply(null,unitArray);
+                        console.log("final unit for m0 is "+finalUnit.value);
+
+                    }
+                    
+               }
+
+           })
+       })
+
+
+       }
+       if(moxNumber=="M1"){
+        fetch("https://api.mlab.com/api/1/databases/hardware/collections/moxpdata?apiKey=Qd1BYa9Hpu9HUixPA76rEmmHyFuVqvop")
+       .then(function(result){
+           result.json().then(function(data){
+
+               var k=data.length;
+               var unitArray=[0];
+               for(var i=0; i<k; i++){
+                 if(data[i].M1!=null)
+                    {
+                        
+                        
+                        unitArray.push(data[i].M0)
+                        //console.log(unitArray);
+                        finalUnit.value =Math.max.apply(null,unitArray);
+                        console.log("final unit for m1 is "+finalUnit.value);
+
+                    }
+                    
+               }
+
+           })
+       })
+
+
+       }
+     }
+
+    
+
+    function test(){
+        var requestObject;   
+        var status = 0;
+        var response_ok = false;
+        console.log("here");
+        if(relayNumber==0){
+            fetch('http://18.222.45.22:3000/0', {
+                method: 'GET',
+                headers: { "Content-type": "application/json"},
+                }).then(function(response) {
+                    status = response.status;  // Get the HTTP status code
+                    response_ok = response.ok; // Is response.status in the 200-range?
+                    return response.json();    // This returns a promise
+                }).then(function(responseObject) {
+                    // Do something with the result
+                }).catch(function(err) {
+                    // An error occurred somewhere in the Promise chain
+            });
+        }
+        else if(relayNumber==1){
+            fetch('http://18.222.45.22:3000/1', {
+                method: 'GET',
+                headers: { "Content-type": "application/json"},
+                }).then(function(response) {
+                    status = response.status;  // Get the HTTP status code
+                    response_ok = response.ok; // Is response.status in the 200-range?
+                    return response.json();    // This returns a promise
+                }).then(function(responseObject) {
+                    // Do something with the result
+                }).catch(function(err) {
+                    // An error occurred somewhere in the Promise chain
+            });    
+        }
+    }
+
+
+    function goBack(){
+        console.log("clicked")
+        router.goto("schedule")
+    }
+  module.exports={
+      goBack:goBack,
+      selectedDevice:selectedDevice,
+      test:test,
+      relayNumber:relayNumber,
+      getPulseCount:getPulseCount,
+      finalUnit:finalUnit  
+      }
+</JavaScript>
+<Panel ux:Name="panel" Background="Black">
+
+<Alive.Switch ux:Name="swtch" Alignment="CenterRight" Value="false" Margin="0,0,55,0" Clicked="{test}" >
+        <WhileTrue Value="{ReadProperty swtch.Value}">
+            <Change panel.Background="#FFD500" />
+            <Change DevName.Color="Black" />
+            <Change Units.Color="Black" />
+        </WhileTrue>
+</Alive.Switch>
+<Alive.BackButton  Dock="Left" Clicked="{goBack}" Alignment="TopLeft" X="25" Y="25" />
+<Button Clicked="{getPulseCount}" Margin="0, 0, 0, 0" X="75" Y="200">
+    <Text ux:Name="DevName" Value="{selectedDevice}" Color="White" Alignment="Center" FontSize="50" />  
+</Button>
+<Text ux:Name="Units" Value="{finalUnit}" Alignment="Default" X="75" Y="300" FontSize="30" Color="White" />
+</Panel>
+</Page>

@@ -1,0 +1,180 @@
+namespace Eliot
+{
+    [Uno.Compiler.UxGenerated]
+    public partial class CorousalPage: Alive.CarouselPage
+    {
+        internal global::Fuse.Reactive.EventBinding temp_eb7;
+        static CorousalPage()
+        {
+        }
+        [global::Uno.UX.UXConstructor]
+        public CorousalPage()
+        {
+            InitializeUX();
+        }
+        void InitializeUX()
+        {
+            var temp = new global::Fuse.Reactive.Data("pushProgram");
+            var temp1 = new global::Alive.ThemedCard();
+            var temp2 = new global::Alive.DarkTheme();
+            var temp3 = new global::Fuse.Controls.StackPanel();
+            var temp4 = new global::Fuse.Controls.StackPanel();
+            var temp5 = new global::Fuse.Controls.Rectangle();
+            var temp6 = new global::Fuse.Drawing.LinearGradient();
+            var temp7 = new global::Fuse.Drawing.GradientStop();
+            var temp8 = new global::Fuse.Drawing.GradientStop();
+            var temp9 = new global::Fuse.Drawing.GradientStop();
+            var temp10 = new global::Alive.Body();
+            var temp11 = new global::Alive.Bubbles();
+            var temp12 = new global::Eliot.Bubble();
+            var temp13 = new global::Fuse.Drawing.LinearGradient();
+            var temp14 = new global::Fuse.Drawing.GradientStop();
+            var temp15 = new global::Fuse.Drawing.GradientStop();
+            var temp16 = new global::Eliot.Bubble();
+            var temp17 = new global::Fuse.Drawing.LinearGradient();
+            var temp18 = new global::Fuse.Drawing.GradientStop();
+            var temp19 = new global::Fuse.Drawing.GradientStop();
+            var temp20 = new global::Eliot.Bubble();
+            var temp21 = new global::Fuse.Drawing.LinearGradient();
+            var temp22 = new global::Fuse.Drawing.GradientStop();
+            var temp23 = new global::Fuse.Drawing.GradientStop();
+            var temp24 = new global::Eliot.Bubble();
+            var temp25 = new global::Fuse.Drawing.LinearGradient();
+            var temp26 = new global::Fuse.Drawing.GradientStop();
+            var temp27 = new global::Fuse.Drawing.GradientStop();
+            var temp28 = new global::Alive.Bubble();
+            var temp29 = new global::Fuse.Drawing.LinearGradient();
+            var temp30 = new global::Fuse.Drawing.GradientStop();
+            var temp31 = new global::Fuse.Drawing.GradientStop();
+            var temp32 = new global::Fuse.Controls.StackPanel();
+            var temp33 = new global::Eliot.Bubble();
+            var temp34 = new global::Fuse.Drawing.LinearGradient();
+            var temp35 = new global::Fuse.Drawing.GradientStop();
+            var temp36 = new global::Fuse.Drawing.GradientStop();
+            var temp37 = new global::Eliot.Bubble();
+            var temp38 = new global::Fuse.Drawing.LinearGradient();
+            var temp39 = new global::Fuse.Drawing.GradientStop();
+            var temp40 = new global::Fuse.Drawing.GradientStop();
+            var temp41 = new global::Fuse.Drawing.LinearGradient();
+            var temp42 = new global::Fuse.Drawing.GradientStop();
+            var temp43 = new global::Fuse.Drawing.GradientStop();
+            temp_eb7 = new global::Fuse.Reactive.EventBinding(temp);
+            global::Fuse.Gestures.Clicked.AddHandler(this, temp_eb7.OnEvent);
+            temp1.Fills.Add(temp41);
+            temp1.Children.Add(temp2);
+            temp1.Children.Add(temp3);
+            temp3.ItemSpacing = 30f;
+            temp3.Width = new Uno.UX.Size(200f, Uno.UX.Unit.Unspecified);
+            temp3.Alignment = Fuse.Elements.Alignment.CenterLeft;
+            temp3.Children.Add(temp4);
+            temp3.Children.Add(temp11);
+            temp3.Children.Add(temp32);
+            temp4.Orientation = Fuse.Layouts.Orientation.Horizontal;
+            temp4.Y = new Uno.UX.Size(20f, Uno.UX.Unit.Unspecified);
+            temp4.Children.Add(temp5);
+            temp4.Children.Add(temp10);
+            temp5.CornerRadius = float4(15f, 15f, 15f, 15f);
+            temp5.Width = new Uno.UX.Size(50f, Uno.UX.Unit.Unspecified);
+            temp5.Height = new Uno.UX.Size(50f, Uno.UX.Unit.Unspecified);
+            temp5.Alignment = Fuse.Elements.Alignment.TopLeft;
+            temp5.Margin = float4(0f, 0f, 0f, 0f);
+            temp5.Padding = float4(0f, 0f, 0f, 0f);
+            temp5.X = new Uno.UX.Size(12f, Uno.UX.Unit.Unspecified);
+            temp5.Fills.Add(temp6);
+            temp6.Stops.Add(temp7);
+            temp6.Stops.Add(temp8);
+            temp6.Stops.Add(temp9);
+            temp7.Offset = 0f;
+            temp7.Color = float4(1f, 1f, 1f, 1f);
+            temp8.Offset = 0.01f;
+            temp8.Color = float4(0.2784314f, 0.4666667f, 0.9529412f, 1f);
+            temp9.Offset = 1f;
+            temp9.Color = float4(0.08627451f, 0.3372549f, 0.9843137f, 1f);
+            temp10.Value = "ROOM 1";
+            temp10.TextWrapping = Fuse.Controls.TextWrapping.Wrap;
+            temp10.TextAlignment = Fuse.Controls.TextAlignment.Center;
+            temp10.Alignment = Fuse.Elements.Alignment.CenterRight;
+            temp10.Margin = float4(20f, 0f, 0f, 0f);
+            temp11.ItemSpacing = -20f;
+            temp11.Margin = float4(0f, 0f, 0f, 0f);
+            temp11.Y = new Uno.UX.Size(5f, Uno.UX.Unit.Unspecified);
+            temp11.Children.Add(temp12);
+            temp11.Children.Add(temp16);
+            temp11.Children.Add(temp20);
+            temp11.Children.Add(temp24);
+            temp11.Children.Add(temp28);
+            temp12.Height = new Uno.UX.Size(25f, Uno.UX.Unit.Unspecified);
+            temp12.Fills.Add(temp13);
+            temp13.Stops.Add(temp14);
+            temp13.Stops.Add(temp15);
+            temp14.Offset = 0f;
+            temp14.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp15.Offset = 1f;
+            temp15.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            temp16.Height = new Uno.UX.Size(25f, Uno.UX.Unit.Unspecified);
+            temp16.Fills.Add(temp17);
+            temp17.Stops.Add(temp18);
+            temp17.Stops.Add(temp19);
+            temp18.Offset = 0f;
+            temp18.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp19.Offset = 1f;
+            temp19.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            temp20.Height = new Uno.UX.Size(25f, Uno.UX.Unit.Unspecified);
+            temp20.Fills.Add(temp21);
+            temp21.Stops.Add(temp22);
+            temp21.Stops.Add(temp23);
+            temp22.Offset = 0f;
+            temp22.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp23.Offset = 1f;
+            temp23.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            temp24.Height = new Uno.UX.Size(25f, Uno.UX.Unit.Unspecified);
+            temp24.Fills.Add(temp25);
+            temp25.Stops.Add(temp26);
+            temp25.Stops.Add(temp27);
+            temp26.Offset = 0f;
+            temp26.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp27.Offset = 1f;
+            temp27.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            temp28.Height = new Uno.UX.Size(20f, Uno.UX.Unit.Unspecified);
+            temp28.Fills.Add(temp29);
+            temp29.Stops.Add(temp30);
+            temp29.Stops.Add(temp31);
+            temp30.Offset = 0f;
+            temp30.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp31.Offset = 1f;
+            temp31.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            temp32.Orientation = Fuse.Layouts.Orientation.Horizontal;
+            temp32.Y = new Uno.UX.Size(-15f, Uno.UX.Unit.Unspecified);
+            temp32.Children.Add(temp33);
+            temp32.Children.Add(temp37);
+            temp33.Height = new Uno.UX.Size(25f, Uno.UX.Unit.Unspecified);
+            temp33.Alignment = Fuse.Elements.Alignment.BottomLeft;
+            temp33.Margin = float4(5f, 0f, 0f, 0f);
+            temp33.Fills.Add(temp34);
+            temp34.Stops.Add(temp35);
+            temp34.Stops.Add(temp36);
+            temp35.Offset = 0f;
+            temp35.Color = float4(0.007843138f, 0.8705882f, 0.7137255f, 1f);
+            temp36.Offset = 1f;
+            temp36.Color = float4(0.2862745f, 0.8588235f, 0.2705882f, 1f);
+            temp37.Height = new Uno.UX.Size(35f, Uno.UX.Unit.Unspecified);
+            temp37.Alignment = Fuse.Elements.Alignment.BottomRight;
+            temp37.Margin = float4(230f, 0f, 0f, 0f);
+            temp37.Fills.Add(temp38);
+            temp38.Stops.Add(temp39);
+            temp38.Stops.Add(temp40);
+            temp39.Offset = 0f;
+            temp39.Color = float4(1f, 0.8196079f, 0.1647059f, 1f);
+            temp40.Offset = 1f;
+            temp40.Color = float4(1f, 0.8196079f, 0.1647059f, 1f);
+            temp41.Stops.Add(temp42);
+            temp41.Stops.Add(temp43);
+            temp42.Offset = 0f;
+            temp42.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3StartColor;
+            temp43.Offset = 1f;
+            temp43.Color = FuseUXKitsAlive_ColorPalette_res.AliveGradient3EndColor;
+            this.Children.Add(temp1);
+            this.Bindings.Add(temp_eb7);
+        }
+    }
+}

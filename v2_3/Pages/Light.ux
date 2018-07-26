@@ -1,0 +1,16 @@
+<Alive.Page ux:Class="Alive.ExampleApp.Light" xmlns:example="Alive.ExampleApp">
+	<Router ux:Dependency="router" />
+    <JavaScript>
+		exports.goBack = function() {
+			router.goBack();
+		}
+        function goBack(){
+            router.push("program")
+        }
+	</JavaScript>
+    <Alive.BackButton Dock="Left" Clicked="{goBack}" Alignment="Left" X="25" Y="25" />
+
+
+
+
+</Alive.Page>    
